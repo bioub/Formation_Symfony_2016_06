@@ -2,3 +2,8 @@ Un message
 Un message
 Un héritage
 Message injection
+[emergency] 2016-06-07T14:56:15+02:00 - Pb de connexion à PostgreSQL
+[emergency] 2016-06-07T15:18:15+02:00 - Pb de connexion à PostgreSQL
+[info] 2016-06-07T15:18:15+02:00 - appel de la fonction lambda
+[emergency] 2016-06-07T15:21:54+02:00 - Pb de connexion à PostgreSQL
+[info] 2016-06-07T15:21:54+02:00 - appel de la fonction lambda

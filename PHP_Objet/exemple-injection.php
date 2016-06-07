@@ -10,4 +10,3 @@ $logger = new FileLogger($writer);
 
 
 $logger->log('Message injection');
-
