@@ -3,11 +3,15 @@
     <head>
         <meta charset="UTF-8" />
         <title>{% block title %}Welcome!{% endblock %}</title>
+        
+        <link rel="stylesheet" href="{{ asset('bundles/ignbootstrap/bootstrap-3.3.6-dist/css/bootstrap.css') }}">
         {% block stylesheets %}{% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>
         {% block body %}{% endblock %}
+        <script src="http://code.jquery.com/jquery-1.12.3.js"></script>
+        <script src="{{ asset('bundles/ignbootstrap/bootstrap-3.3.6-dist/js/bootstrap.js') }}"></script>
         {% block javascripts %}{% endblock %}
     </body>
 </html>
