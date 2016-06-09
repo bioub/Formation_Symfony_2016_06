@@ -1,0 +1,16 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}{{ societe.nom }} {{ societe.ville }}{% endblock %}
+
+{% block body %}
+<h2>Afficher une société</h2>
+
+<p>
+    <b>Nom :</b> {{ societe.nom }}
+</p>
+
+<p>
+    <b>Ville :</b> {{ societe.ville }}
+</p>
+
+{% endblock %}

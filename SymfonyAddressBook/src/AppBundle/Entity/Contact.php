@@ -41,7 +41,8 @@ class Contact
      * @ORM\Column(name="email", type="string", length=80, nullable=true, unique=true)
      */
     protected $email;
-
+    
+    
     /**
      * @var \DateTime
      *

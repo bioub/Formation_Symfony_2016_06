@@ -19,9 +19,9 @@ class ContactController extends Controller
         
         $liste = $repo->findBy([], ['prenom' => 'ASC']);
         
-        return $this->render('AppBundle:Contact:list.html.twig', array(
+        return $this->render('AppBundle:Contact:list.html.twig', [
             'contacts' => $liste
-        ));
+        ]);
     }
 
     /**

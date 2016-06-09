@@ -1,0 +1,18 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}Liste des sociétés{% endblock %}
+
+{% block body %}
+<h2>Liste des sociétés</h2>
+
+<table class="table table-striped">
+    {% for s in societes %}
+    <tr>
+        <td>{{ s.nom }} {{ s.ville }}</td>
+        <td>
+            <a href="{{ path('app_societe_show', {'id': s.id}) }}" class="btn btn-xs btn-primary">Afficher</a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}
