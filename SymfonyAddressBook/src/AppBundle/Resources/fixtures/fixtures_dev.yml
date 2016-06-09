@@ -4,8 +4,17 @@ AppBundle\Entity\Contact:
         nom: <lastName()>
         email: 50%? <email()>
         dateNaissance: 50%? <datetime()>
+        societe: 50%? @societe*
         
 AppBundle\Entity\Societe:
     societe{1..5}:
         nom: <company()>
         ville: <city()>
+
+AppBundle\Entity\Groupe:
+    groupe1:
+        nom: Amis
+        description: Mes amis
+    groupe2:
+        nom: Famille
+        description: Ma famille

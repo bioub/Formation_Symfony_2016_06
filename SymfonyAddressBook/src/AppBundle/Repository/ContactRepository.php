@@ -10,4 +10,17 @@ namespace AppBundle\Repository;
  */
 class ContactRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function findWithSociete($id)
+    {
+        $dql = "SELECT c, s "
+             . "FROM AppBundle\Entity\Contact c "
+             . "LEFT JOIN c.societe s "
+             . "WHERE c.id = :id";
+        
+        $query = $this->getEntityManager()->createQuery($dql);
+        
+        $query->setParameter('id', $id);
+        
+        return $query->getSingleResult();
+    }
 }

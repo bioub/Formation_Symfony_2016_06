@@ -2,8 +2,11 @@
 
 namespace AppBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use AppBundle\Entity\Contact;
+use AppBundle\Form\ContactType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * @Route(path="/contact")
@@ -30,8 +33,13 @@ class ContactController extends Controller
     public function showAction($id)
     {
         $repo = $this->getDoctrine()->getRepository('AppBundle:Contact');
+        /* @var $repo \AppBundle\Repository\ContactRepository */
         
-        $contact = $repo->find($id);
+        $contact = $repo->findWithSociete($id);
+        
+        if (!$contact) {
+            throw $this->createNotFoundException();
+        }
         
         return $this->render('AppBundle:Contact:show.html.twig', array(
             'contact' => $contact
@@ -41,10 +49,27 @@ class ContactController extends Controller
     /**
      * @Route("/ajouter")
      */
-    public function addAction()
+    public function addAction(Request $request)
     {
+        $contact = new Contact();
+        
+        $form = $this->createForm(ContactType::class, $contact);
+        
+        $form->handleRequest($request);
+        
+        if ($form->isValid()) {
+            $em = $this->getDoctrine()->getEntityManager();
+            $em->persist($contact);
+            $em->flush();
+            
+            $this->addFlash('success', $contact->getPrenom() . ' a bien été créé');
+            
+            //return $this->redirectToRoute('app_contact_show', ['id' => $contact->getId()]);
+            return $this->redirectToRoute('app_contact_list');
+        }
+        
         return $this->render('AppBundle:Contact:add.html.twig', array(
-            // ...
+            'contactForm' => $form->createView()
         ));
     }
 
