@@ -15,8 +15,12 @@ class ContactController extends Controller
      */
     public function listAction()
     {
+        $repo = $this->getDoctrine()->getRepository('AppBundle:Contact');
+        
+        $liste = $repo->findBy([], ['prenom' => 'ASC']);
+        
         return $this->render('AppBundle:Contact:list.html.twig', array(
-            // ...
+            'contacts' => $liste
         ));
     }
 
@@ -25,8 +29,12 @@ class ContactController extends Controller
      */
     public function showAction($id)
     {
+        $repo = $this->getDoctrine()->getRepository('AppBundle:Contact');
+        
+        $contact = $repo->find($id);
+        
         return $this->render('AppBundle:Contact:show.html.twig', array(
-            // ...
+            'contact' => $contact
         ));
     }
 

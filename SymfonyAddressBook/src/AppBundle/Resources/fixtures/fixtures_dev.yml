@@ -1,0 +1,6 @@
+AppBundle\Entity\Contact:
+    contact{1..10}:
+        prenom: <firstName()>
+        nom: <lastName()>
+        email: 50%? <email()>
+        dateNaissance: 50%? <datetime()>
