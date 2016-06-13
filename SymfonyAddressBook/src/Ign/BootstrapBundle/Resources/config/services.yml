@@ -1,4 +1,10 @@
 services:
+    bootstrap.twig_extension:
+        class: Ign\BootstrapBundle\Twig\BootstrapExtension
+        arguments: ["@session"]
+        public: false
+        tags:
+            - { name: twig.extension }
 #    ign_bootstrap.example:
 #        class: Ign\BootstrapBundle\Example
 #        arguments: ["@service_id", "plain_value", %parameter%]

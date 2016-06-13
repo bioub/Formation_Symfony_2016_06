@@ -7,6 +7,12 @@ services:
     app.manager.societe:
         class: AppBundle\Manager\SocieteManager
         arguments: ["@doctrine.orm.entity_manager"]
+    app.twig_extension:
+        class: AppBundle\Twig\AppExtension
+        arguments: ["@app.manager.societe"]
+        public: false
+        tags:
+            - { name: twig.extension }
 #    service_name:
 #        class: AppBundle\Directory\ClassName
 #        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]
