@@ -5,6 +5,7 @@ AppBundle\Entity\Contact:
         email: 50%? <email()>
         dateNaissance: 50%? <datetime()>
         societe: 50%? @societe*
+        groupes: <numberBetween(0, 2)>x @groupe*
         
 AppBundle\Entity\Societe:
     societe{1..5}:

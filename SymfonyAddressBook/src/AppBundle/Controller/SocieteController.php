@@ -11,13 +11,25 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 class SocieteController extends Controller
 {
     /**
+     *
+     * @var \AppBundle\Manager\SocieteManager
+     */
+    protected $societeManager;
+
+    /**
+     * @return \AppBundle\Manager\SocieteManager
+     */
+    protected function getSocieteManager()
+    {
+        return $this->container->get('app.manager.societe');
+    }
+    
+    /**
      * @Route("/")
      */
     public function listAction()
     {
-        $repo = $this->getDoctrine()->getRepository('AppBundle:Societe');
-        
-        $societes = $repo->findAll();
+        $societes = $this->getSocieteManager()->getAll();
         
         return $this->render('AppBundle:Societe:list.html.twig', array(
             'societes' => $societes
@@ -29,9 +41,7 @@ class SocieteController extends Controller
      */
     public function showAction($id)
     {
-        $repo = $this->getDoctrine()->getRepository('AppBundle:Societe');
-        
-        $societe = $repo->find($id);
+        $societe = $this->getSocieteManager()->getById($id);
         
         return $this->render('AppBundle:Societe:show.html.twig', array(
             'societe' => $societe

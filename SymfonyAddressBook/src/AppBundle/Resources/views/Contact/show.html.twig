@@ -30,4 +30,13 @@
 </p>
 {% endif %}
 
+{% if contact.groupes|length %}
+<p>
+    <b>Groupes :</b>
+    {% for groupe in contact.groupes %} 
+    <span class="label label-default">{{groupe.nom}}</span>
+    {% endfor %}
+</p>
+{% endif %}
+
 {% endblock %}

@@ -54,9 +54,16 @@ class Contact
     /**
      * @var Societe
      * 
+     * ORM\ManyToOne(targetEntity="AppBundle\Entity\Societe", fetch="EAGER") 
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Societe") 
      */
     protected $societe;
+    
+    /**
+     *
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Groupe", inversedBy="contacts")
+     */
+    protected $groupes;
 
     /**
      * Get id
@@ -163,5 +170,28 @@ class Contact
     {
         return $this->dateNaissance;
     }
-}
 
+    /**
+     * Set societe
+     *
+     * @param \AppBundle\Entity\Societe $societe
+     *
+     * @return Contact
+     */
+    public function setSociete(\AppBundle\Entity\Societe $societe = null)
+    {
+        $this->societe = $societe;
+
+        return $this;
+    }
+
+    /**
+     * Get societe
+     *
+     * @return \AppBundle\Entity\Societe
+     */
+    public function getSociete()
+    {
+        return $this->societe;
+    }
+}

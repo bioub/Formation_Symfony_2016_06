@@ -5,12 +5,12 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Societe
+ * Groupe
  *
- * @ORM\Table(name="societe")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\SocieteRepository")
+ * @ORM\Table(name="groupe")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\GroupeRepository")
  */
-class Societe
+class Groupe
 {
     /**
      * @var int
@@ -24,23 +24,23 @@ class Societe
     /**
      * @var string
      *
-     * @ORM\Column(name="nom", type="string", length=60)
+     * @ORM\Column(name="nom", type="string", length=20)
      */
     private $nom;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="ville", type="string", length=60)
+     * @ORM\Column(name="description", type="text")
      */
-    private $ville;
+    private $description;
 
+    /**
+     *
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Contact", mappedBy="groupes")
+     */
+    protected $contact;
 
-    public function setId($id) {
-        $this->id = $id;
-        return $this;
-    }
-    
     /**
      * Get id
      *
@@ -56,7 +56,7 @@ class Societe
      *
      * @param string $nom
      *
-     * @return Societe
+     * @return Groupe
      */
     public function setNom($nom)
     {
@@ -76,30 +76,27 @@ class Societe
     }
 
     /**
-     * Set ville
+     * Set description
      *
-     * @param string $ville
+     * @param string $description
      *
-     * @return Societe
+     * @return Groupe
      */
-    public function setVille($ville)
+    public function setDescription($description)
     {
-        $this->ville = $ville;
+        $this->description = $description;
 
         return $this;
     }
 
     /**
-     * Get ville
+     * Get description
      *
      * @return string
      */
-    public function getVille()
+    public function getDescription()
     {
-        return $this->ville;
-    }
-    
-    public function __toString() {
-        return $this->nom;
+        return $this->description;
     }
 }
+

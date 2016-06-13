@@ -58,7 +58,20 @@ class Contact
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Societe") 
      */
     protected $societe;
+    
+    /**
+     *
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Groupe", inversedBy="contacts")
+     */
+    protected $groupes;
 
+    
+    public function setId($id) {
+        $this->id = $id;
+        return $this;
+    }
+
+        
     /**
      * Get id
      *
@@ -187,5 +200,46 @@ class Contact
     public function getSociete()
     {
         return $this->societe;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->groupes = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add groupe
+     *
+     * @param \AppBundle\Entity\Groupe $groupe
+     *
+     * @return Contact
+     */
+    public function addGroupe(\AppBundle\Entity\Groupe $groupe)
+    {
+        $this->groupes[] = $groupe;
+
+        return $this;
+    }
+
+    /**
+     * Remove groupe
+     *
+     * @param \AppBundle\Entity\Groupe $groupe
+     */
+    public function removeGroupe(\AppBundle\Entity\Groupe $groupe)
+    {
+        $this->groupes->removeElement($groupe);
+    }
+
+    /**
+     * Get groupes
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getGroupes()
+    {
+        return $this->groupes;
     }
 }
